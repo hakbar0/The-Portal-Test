@@ -6,7 +6,8 @@
   "dependencies": {
     "csv-write-stream": "^2.0.0",
     "firebase-admin": "^5.11.0",
-    "inquirer": "^5.2.0"
+    "inquirer": "^5.2.0",
+    "moment": "^2.22.0"
   },
   "devDependencies": {},
   "scripts": {

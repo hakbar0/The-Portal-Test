@@ -14,7 +14,7 @@ const questions = [
       let productCode = parseInt(input);
 
       setTimeout(function () {
-        if (!(productCode > 0) || (productCode.toString().length !== 5)) {
+        if (!(productCode > 0) || (input.toString().length !== 5)) {
           done('You need to provide a valid product code. It should have 5 digits.');
           return;
         }

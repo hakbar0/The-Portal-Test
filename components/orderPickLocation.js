@@ -1,31 +1,47 @@
+const singleOrder = [];
+const doubleOrder = [];
 const order = [];
 const fs = require('fs');
-const csvWriter = require('csv-write-stream')
-const { getDoubleShelf, getSingleShelf } = require('../firebase/retrieveDb');
+const csvWriter = require('csv-write-stream');
+const db = require('../firebase/connectToDb');
+const sortAlphaNum = require('./sort');
+const moment = require('moment');
 
 
-// var writer = csvWriter({ headers: ["pick_location", "product_code", "quantity"] })
-// writer.pipe(fs.createWriteStream('./CSV/input.csv'))
+var writer = csvWriter({ headers: ["date","pick_location", "product_code", "quantity"] })
+writer.pipe(fs.createWriteStream('./CSV/input.csv'))
 
 
-// function orderPickLocation() {
-  
+function orderPickLocation() {
+  return db.ref("/HistoryDoubleShelf").once("value", res => {
+  }).then(dbDoubleShelf => {
+    doubleShelf = dbDoubleShelf.val()
+    return db.ref("/HistorySingleShelf").once("value", res => {
+    }).then(dbSingleShelf => {
+      singleShelf = dbSingleShelf.val()
 
-//   orderSingle.sort(sortFunction);
-//   orderDouble.sort(sortFunction);
+      for (let i = 0; i < Object.values(singleShelf).length; i++) singleOrder.push(Object.values(((Object.values(singleShelf))[i])))
 
-//   if (!orderDouble.length) order.push(orderSingle);
-//   else if (!orderDouble.length) order.push(rderDouble);
-//   else order.push(orderSingle, orderDouble);
+      for (let i = 0; i < Object.values(doubleShelf).length; i++) doubleOrder.push(Object.values(((Object.values(doubleShelf))[i])))
 
-//   for (let i = 0; i < order.length; i++)  writer.write([order[0][i][0], order[0][i][1], order[0][i][2]])
-//   writer.end()
-// }
+      singleOrder.sort(sortAlphaNum);
+      doubleOrder.sort(sortAlphaNum);
 
-// function sortFunction(a, b) {
-//   if (a[0] === b[0]) return 0;
-//   else return (a[0] < b[0]) ? -1 : 1;
-// }
+    if (!doubleOrder.length) order.push(singleOrder);
+    else if (!singleOrder.length) order.push(doubleOrder);
+    else order.push(singleOrder, doubleOrder);
 
+    const finalOrder = [].concat.apply([], order);
+
+    for (let i = 0; i < finalOrder.length; i++)  writer.write([moment(finalOrder[i][0]).format('LLLL'), finalOrder[i][1], finalOrder[i][2], finalOrder[i][3]])
+    writer.end();
+    console.log('CSV FILE MADE, PLEASE PRESS CTRL/CMD AND C TO QUIT.')
+    })
+  })
+}
 
 module.exports = orderPickLocation;
+
+
+
+

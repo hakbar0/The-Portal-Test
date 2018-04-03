@@ -1,2 +1,2 @@
-const { userInput } = require('./components/userInput');
+const  userInput  = require('./components/userInput');
 userInput();
