@@ -7,28 +7,25 @@ function userInput() {
     name: 'product_code',
     type: 'input',
     message: 'Enter The Product Code',
+    validate: function (input) {
+      var done = this.async();
+      let productCode = parseInt(input);
+  
+      setTimeout(function() {
+        if (!(productCode > 0) && productCode.toString().length !==5) {
+          done('You need to provide a valid number.');
+          return;
+        }
+  
+        done(null, true);
+      }, 100);
+    }
   },
   {
     name: 'quantity',
     type: 'input',
     message: 'Enter The Quantity needed.',
-  //   validate: function validateQuantity(name){
-  //     let quantityNumber = parseInt(name);
-  //     if(!quantityNumber) return 'Please pick a valid number.';
-  // }
-  // validate: function validateQuantity(input) {
-  //   var done = this.async();
-  //   let quantityNumber = parseInt(input);
-
-  //   setTimeout(function() {
-  //     if (quantityNumber <= 0) {
-
-  //       done('You need to provide a number');
-  //       return;
-  //     }
-  //     done(null, true);
-  //   }, 100);
-  validate: function (input) {
+    validate: function (input) {
     var done = this.async();
     let quantityNumber = parseInt(input);
 
