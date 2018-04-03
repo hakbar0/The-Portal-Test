@@ -4,6 +4,7 @@
   "description": "A command line portal to sort orders.",
   "main": "bays.js",
   "dependencies": {
+    "csv-write-stream": "^2.0.0",
     "inquirer": "^5.2.0"
   },
   "devDependencies": {},
