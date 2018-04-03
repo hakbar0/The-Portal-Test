@@ -15,10 +15,10 @@ function sortAlphaNum(a,b) {
       } else {
           return aA > bA ? 1 : -1;
       }
-  }else if(isNaN(AInt)){//A is not an Int
-      return 1;//to make alphanumeric sort first return -1 here
-  }else if(isNaN(BInt)){//B is not an Int
-      return -1;//to make alphanumeric sort first return 1 here
+  }else if(isNaN(AInt)){
+      return 1;
+  }else if(isNaN(BInt)){
+      return -1;
   }else{
       return AInt > BInt ? 1 : -1;
   }

@@ -2,6 +2,7 @@ const { expect } = require('chai');
 const db = require('../firebase/connectToDb');
 
 
+
 describe('Database Test', () => {
   it('Able to retrieve all orders in an object format test 1.', () => {
     db.ref("/HistoryDoubleShelf").once("value", orders => {
@@ -42,10 +43,3 @@ describe('Database Test', () => {
   })
 });
 
-
-
-describe('Inquirer prompt test', () => {
-  it('test', () =>{
-    expect(5).to.equal(5);
-  })
-})
