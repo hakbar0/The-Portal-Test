@@ -1,8 +1,6 @@
 const { expect } = require('chai');
 const db = require('../firebase/connectToDb');
 
-
-
 describe('Database Test', () => {
   it('Able to retrieve all orders in an object format test 1.', () => {
     db.ref("/HistoryDoubleShelf").once("value", orders => {
