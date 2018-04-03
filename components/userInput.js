@@ -1,6 +1,7 @@
 const bays = require('./bays');
 const inquirer = require('inquirer');
-const pickLoctionArray = [], quantityArray = [], productCodeArray = [];
+const order = [];
+const orderPickLocation = require('./orderPickLocation');
 
 function userInput() {
   inquirer.prompt([{
@@ -64,19 +65,17 @@ function userInput() {
     defualt: 2,
   }
   ]).then((answers) => {
-    productCodeArray.push(answers.product_code);
-    quantityArray.push(answers.quantity);
-    pickLoctionArray.push(answers.pick_Location);
+    order.push([answers.pick_Location.toUpperCase(),answers.product_code, answers.quantity]);
     if (answers.order_status === 'Yes') userInput();
-    else console.log(pickLoctionArray, quantityArray, productCodeArray)
+    else{
+      orderPickLocation(order);
+
+    } 
   })
 }
 
 module.exports = {
-  userInput,
-  pickLoctionArray,
-  quantityArray,
-  productCodeArray
+  userInput
 }
 
 

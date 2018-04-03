@@ -1,6 +1,5 @@
 const { 
-  pickLoctionArray, productCodeArray, 
-  quantityArray, userInput 
+ userInput 
 } = require('./components/userInput');
 
 userInput();

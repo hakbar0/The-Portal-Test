@@ -1,6 +1,6 @@
 
-function orderPickLocation(locations){
-console.log(locations);
+function orderPickLocation(order){
+console.log(order);
 }
 
-orderPickLocation(['AB 10', 'AC 10']);
+module.exports = orderPickLocation;
