@@ -10,10 +10,9 @@ function userInput() {
     validate: function (input) {
       var done = this.async();
       let productCode = parseInt(input);
-  
       setTimeout(function() {
-        if (!(productCode > 0) && productCode.toString().length !==5) {
-          done('You need to provide a valid number.');
+        if (!(productCode > 0) || (productCode.toString().length !==5)) {
+          done('You need to provide a valid product code. It should have 5 digits.');
           return;
         }
   
@@ -31,10 +30,9 @@ function userInput() {
 
     setTimeout(function() {
       if (!(quantityNumber > 0)) {
-        done('You need to provide a valid number.');
+        done('You need to provide a valid quanitity number.');
         return;
       }
-
       done(null, true);
     }, 100);
   }
@@ -43,6 +41,20 @@ function userInput() {
     name: 'pick_Location',
     type: 'input',
     message: 'Enter The Location',
+    validate: function (input) {
+      var done = this.async();
+      let bay = input.replace(/[^a-z]/gi, '');
+      let shelf = input.replace(/[^0-9]/gi, '');
+
+      setTimeout(function() {
+        if (!shelf || !bay || shelf < 0 || shelf > 10 || !(bays.indexOf(bay.toUpperCase()) > -1)) {
+          done('You need to provide a valid bay letter/letters or shelf number.');
+          return;
+        }
+  
+        done(null, true);
+      }, 100);
+    }
   },
   {
     name: 'order_status',
