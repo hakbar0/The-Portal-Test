@@ -1,6 +1,7 @@
 const bays = require('./bays');
 const inquirer = require('inquirer');
-const order = [];
+const orderSingleShelf = [];
+const orderDoubleshelf = [];
 const orderPickLocation = require('./orderPickLocation');
 
 function userInput() {
@@ -65,11 +66,12 @@ function userInput() {
     defualt: 2,
   }
   ]).then((answers) => {
-    order.push([answers.pick_Location.toUpperCase(),answers.product_code, answers.quantity]);
+    let bay = answers.pick_Location.replace(/[^a-z]/gi, '');
+    if(bay.length === 2) orderDoubleshelf.push([answers.pick_Location.toUpperCase(),answers.product_code, answers.quantity]);
+    else orderSingleShelf.push([answers.pick_Location.toUpperCase(),answers.product_code, answers.quantity]);
     if (answers.order_status === 'Yes') userInput();
     else{
-      orderPickLocation(order);
-
+      orderPickLocation(orderSingleShelf, orderDoubleshelf);
     } 
   })
 }
