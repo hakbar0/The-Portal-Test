@@ -12,6 +12,35 @@ function userInput() {
     name: 'quantity',
     type: 'input',
     message: 'Enter The Quantity needed.',
+  //   validate: function validateQuantity(name){
+  //     let quantityNumber = parseInt(name);
+  //     if(!quantityNumber) return 'Please pick a valid number.';
+  // }
+  // validate: function validateQuantity(input) {
+  //   var done = this.async();
+  //   let quantityNumber = parseInt(input);
+
+  //   setTimeout(function() {
+  //     if (quantityNumber <= 0) {
+
+  //       done('You need to provide a number');
+  //       return;
+  //     }
+  //     done(null, true);
+  //   }, 100);
+  validate: function (input) {
+    var done = this.async();
+    let quantityNumber = parseInt(input);
+
+    setTimeout(function() {
+      if (!(quantityNumber > 0)) {
+        done('You need to provide a valid number.');
+        return;
+      }
+
+      done(null, true);
+    }, 100);
+  }
   },
   {
     name: 'pick_Location',
