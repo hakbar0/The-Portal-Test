@@ -1,5 +1,5 @@
 # The-Portal-Test
-A command line portal to sort orders and dind the optimal route through the warehouse.
+A command line portal to sort orders and find the optimal route through the warehouse.
 
 ## Getting Started
 
@@ -31,7 +31,7 @@ node shelfPicker.js
 
 ## Running the tests
 
-To run tests navigate to the root folder and run npm t.
+To run tests, navigate to the root folder and run npm t.
 
 ```
 npm run test
@@ -45,7 +45,7 @@ Note: These tests are located in the spec folder and have a naming convention "e
 ## Description
 
 The purpose of this project was to design, build and test to find the optimal route through the warehouse.
-It Outputs a CSV file to the CSV Folder.
+It outputs a CSV file to the CSV Folder.
 
 Note: The CSV file is arranged differently to the desired example. As I thought date could be useful when picking orders.
 
@@ -55,7 +55,7 @@ Note: The CSV file is arranged differently to the desired example. As I thought 
 
 * Seeding - Seeding Firebase with fake data.
 
-* Testing React - am keen to learn more about React testing with Jest, the framework I used to test my database queries.
+* Testing Inquirer - Writing tests for prompts is challenging, would like to work on testing prompts in the future.
 
 ### Outcome
 
@@ -64,4 +64,3 @@ A working command line application that saves files in the CSV folder.
 ## Authors
 
 * **Haseeb Akbar**
-
